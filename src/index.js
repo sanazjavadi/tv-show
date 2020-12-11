@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//state
+import Showsstate from './context/shows/ShowsState'
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+<Showsstate>
+<App />
+</Showsstate>
+  
+  ,
   document.getElementById('root')
 );
 
