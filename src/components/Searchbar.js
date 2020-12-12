@@ -2,11 +2,16 @@
 
 import React, {useContext, useState} from 'react'
 
+//components
+import Alert from './Alert'
+
 //context
 import ShowsContext from '../context/shows/showsContext'
+import AlertContext from '../context/alerts/alertsContext'
 
 export default function Searchbar(props) {
-    
+
+  const {alert, setAlert} = useContext(AlertContext)
    const showscontext = useContext(ShowsContext)
    const  {searchShows} = showscontext
    const [searchTerm, setSearchTerm] = useState('');
@@ -14,7 +19,7 @@ export default function Searchbar(props) {
    const onSearchHandler = (e) => {
        e.preventDefault();
        if(searchTerm === ''){
-           alert('please enter something')
+           setAlert('please enter something', 'danger')
        }
        else{
            searchShows(searchTerm)
@@ -24,6 +29,9 @@ export default function Searchbar(props) {
         <div className="container">
       <div className="searchbar">
       <form className="searchbar__form">
+        {
+          alert && <Alert message={alert.message} type={alert.type}/>
+        }
         <input
           type="text"
           placeholder="Search For Tv Show"
